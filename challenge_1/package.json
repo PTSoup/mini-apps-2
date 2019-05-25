@@ -1,0 +1,33 @@
+{
+  "name": "challenge_1",
+  "version": "1.0.0",
+  "description": "Challeng 1 of Mini Apps 2",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PTSoup/rpt11-mini-apps-2.git"
+  },
+  "author": "TJ Souphaphone",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/PTSoup/rpt11-mini-apps-2/issues"
+  },
+  "homepage": "https://github.com/PTSoup/rpt11-mini-apps-2#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "css-loader": "^2.1.1",
+    "express": "^4.17.0",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-loader": "^8.0.6",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "webpack": "^4.32.2"
+  }
+}
