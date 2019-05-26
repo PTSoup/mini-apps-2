@@ -9,7 +9,7 @@ class App extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-          pageCount: 1,
+          page: 1,
           data: [  
               {
               "date": "",
@@ -24,8 +24,8 @@ class App extends React.Component {
         this.dataLoader = this.dataLoader.bind(this);
     }
 
-    dataLoader () {
-      axios.get(`http://localhost:3000/events?_page=${this.state.page}&_limit=10`)
+    dataLoader (page) {
+      axios.get(`http://localhost:3000/events?_page=${page}&_limit=10`)
       .then((response) =>{
           this.setState({
               data: response.data
@@ -36,12 +36,16 @@ class App extends React.Component {
       });
     }
 
-    handlePageClick (event) {
-      let page = event.target;
+    handlePageClick = (event) => {
+      let page = Number(event.selected);
+      console.log(`this is the page targeted:`, page);
+
+      this.dataLoader(page)
+      
     }
 
     componentDidMount () {
-      this.dataLoader();
+      this.dataLoader(this.state.page);
     }
 
     render () {
