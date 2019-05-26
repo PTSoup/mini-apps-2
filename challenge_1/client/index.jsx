@@ -28,6 +28,8 @@ class App extends React.Component {
     dataLoader (page) {
       axios.get(`http://localhost:3000/events?_page=${page}`)
       .then((response) =>{
+        const count = response.headers['x-total-count'];
+        console.log(`this is the count:`, count);
           this.setState({
               data: response.data
           });
