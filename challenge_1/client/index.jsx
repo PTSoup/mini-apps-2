@@ -31,10 +31,11 @@ class App extends React.Component {
       axios.get(`http://localhost:3000/events?_page=${page}&q=${searchTerm}`)
       .then((response) =>{
         const count = Number(response.headers['x-total-count']);
+        const pageCount = Math.ceil(count / 10);
         console.log(`this is the count:`, count);
           this.setState({
               data: response.data,
-              pageCount: count
+              pageCount: pageCount
           });
       })
       .catch((error) => {
@@ -52,10 +53,12 @@ class App extends React.Component {
 
       this.dataLoader(page, this.state.searchTerm);
       
+      console.log(`this is the new state after clicking:`, this.state);
     }
 
     componentDidMount () {
       this.dataLoader(this.state.page, this.state.searchTerm);
+      console.log(`this is the state after mounting:`, this.state);
     }
 
     render () {
@@ -66,7 +69,10 @@ class App extends React.Component {
                   <HistoryList historyData={this.state.data}/>
                 </div>
                 <div id="react-paginate">
-                  <PaginationNav handlePageClick={this.handlePageClick.bind(this)}/>
+                  <PaginationNav 
+                  handlePageClick={this.handlePageClick.bind(this)}
+                  pageCount={this.state.pageCount}
+                  />
                 </div>
             </div>
         )
