@@ -9,14 +9,17 @@ class Historylist extends React.Component {
         const events = this.props.historyData;
         
         const ListItems = events.map((event, index) => {
-            return <li key={index} className="listitem">
+            return <div className="listitem">
+                <li key={index}>
                 <div>Date: {event.date}</div>
                 <div>Description: {event.description}</div>
                 <div>Language: {event.lang}</div>
                 <div>Category 1: {event.category1}</div>
                 <div>Category 2: {event.category2}</div>
                 <div>Granularity: {event.granularity}</div>
-            </li>
+                </li>
+            </div> 
+
         });
 
         return <ul> { ListItems } </ul>

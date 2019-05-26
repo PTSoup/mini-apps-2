@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
 import HistoryList from './historylist.jsx';
-// import App from './app.jsx';
+import './styles/styles.css';
 
 class App extends React.Component {
     constructor(props) {
@@ -16,7 +16,7 @@ class App extends React.Component {
                 "category1": "",
                 "category2": "",
                 "granularity": ""
-              }
+                }
             ]
         }
         // this.dataLoader = this.dataLoader.bind(this);
@@ -48,7 +48,8 @@ class App extends React.Component {
 
     render () {
         return (
-            <div>This should display thank you
+            <div>
+                <h1>Behold Events in History!</h1>
                 <div id="EventList">
                     <HistoryList historyData={this.state.data}/>
                 </div>
