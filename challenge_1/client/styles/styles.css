@@ -17,3 +17,13 @@ ul {
     display: block;
     position: absolute;
 }
+
+#react-paginate ul {
+    display: inline-block;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+#react-paginate li {
+    display: inline-block;
+}
