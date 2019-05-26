@@ -2,7 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
 import HistoryList from './historylist.jsx';
-import ReactPaginate from 'react-paginate';
+import PaginationNav from './pagination.jsx';
+// import ReactPaginate from 'react-paginate';
 import './styles/styles.css';
 
 class App extends React.Component {
@@ -25,7 +26,7 @@ class App extends React.Component {
     }
 
     dataLoader (page) {
-      axios.get(`http://localhost:3000/events?_page=${page}&_limit=10`)
+      axios.get(`http://localhost:3000/events?_page=${page}`)
       .then((response) =>{
           this.setState({
               data: response.data
@@ -37,8 +38,12 @@ class App extends React.Component {
     }
 
     handlePageClick = (event) => {
-      let page = Number(event.selected);
-      console.log(`this is the page targeted:`, page);
+      let page = Number(event.selected) + 1;
+      console.log(`this is the page targeted:`, event.selected);
+
+      this.setState({
+        page: page
+      });
 
       this.dataLoader(page)
       
@@ -53,19 +58,10 @@ class App extends React.Component {
             <div>
                 <h1>Behold Events in History!</h1>
                 <div id="EventList">
-                    <HistoryList historyData={this.state.data}/>
-                    <ReactPaginate 
-                        previousLabel={'previous'}
-                        nextLabel={'next'}
-                        breakLabel={'...'}
-                        breakClassName={'break-me'}
-                        pageCount={3786}
-                        marginPagesDisplayed={2}
-                        pageRangeDisplayed={5}
-                        onPageChange={this.handlePageClick}
-                        containerClassName={'pagination'}
-                        subContainerClassName={'pages pagination'}
-                        activeClassName={'active'} />
+                  <HistoryList historyData={this.state.data}/>
+                </div>
+                <div id="react-paginate">
+                  <PaginationNav handlePageClick={this.handlePageClick.bind(this)}/>
                 </div>
             </div>
         )
