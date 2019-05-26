@@ -11,6 +11,7 @@ class App extends React.Component {
         super(props);
         this.state = {
           page: 1,
+          pageCount: 1,
           data: [  
               {
               "date": "",
@@ -20,18 +21,20 @@ class App extends React.Component {
               "category2": "",
               "granularity": ""
               }
-          ]
+          ],
+          searchTerm: "rome"
         }
         this.dataLoader = this.dataLoader.bind(this);
     }
 
-    dataLoader (page) {
-      axios.get(`http://localhost:3000/events?_page=${page}`)
+    dataLoader (page, searchTerm) {
+      axios.get(`http://localhost:3000/events?_page=${page}&q=${searchTerm}`)
       .then((response) =>{
-        const count = response.headers['x-total-count'];
+        const count = Number(response.headers['x-total-count']);
         console.log(`this is the count:`, count);
           this.setState({
-              data: response.data
+              data: response.data,
+              pageCount: count
           });
       })
       .catch((error) => {
@@ -47,12 +50,12 @@ class App extends React.Component {
         page: page
       });
 
-      this.dataLoader(page)
+      this.dataLoader(page, this.state.searchTerm);
       
     }
 
     componentDidMount () {
-      this.dataLoader(this.state.page);
+      this.dataLoader(this.state.page, this.state.searchTerm);
     }
 
     render () {
