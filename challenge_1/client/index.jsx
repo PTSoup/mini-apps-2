@@ -2,48 +2,57 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
 import HistoryList from './historylist.jsx';
+import PaginationNav from './pagination.jsx';
+// import ReactPaginate from 'react-paginate';
 import './styles/styles.css';
 
 class App extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            data: [  
-                {
-                "date": "",
-                "description": "",
-                "lang": "",
-                "category1": "",
-                "category2": "",
-                "granularity": ""
-                }
-            ]
+          page: 1,
+          data: [  
+              {
+              "date": "",
+              "description": "",
+              "lang": "",
+              "category1": "",
+              "category2": "",
+              "granularity": ""
+              }
+          ]
         }
-        // this.dataLoader = this.dataLoader.bind(this);
+        this.dataLoader = this.dataLoader.bind(this);
     }
 
-    // dataLoader () {
-    //     // axios.get('http://localhost:3000/events?_page=1&_limit=10&_start=1&_end=5')
-    //     //     .then((response) =>{
-    //     //         this.setState({
-    //     //             data: response
-    //     //         });
-    //     //     })
-    //     //     .catch((error) => {
-    //     //         console.log(error);
-    //     //     });
-    // }
+    dataLoader (page) {
+      axios.get(`http://localhost:3000/events?_page=${page}`)
+      .then((response) =>{
+        const count = response.headers['x-total-count'];
+        console.log(`this is the count:`, count);
+          this.setState({
+              data: response.data
+          });
+      })
+      .catch((error) => {
+          console.log(`Error getting data`, error);
+      });
+    }
+
+    handlePageClick = (event) => {
+      let page = Number(event.selected) + 1;
+      console.log(`this is the page targeted:`, event.selected);
+
+      this.setState({
+        page: page
+      });
+
+      this.dataLoader(page)
+      
+    }
 
     componentDidMount () {
-        axios.get('http://localhost:3000/events?_page=1&limit=2')
-        .then((response) =>{
-            this.setState({
-                data: response.data
-            });
-        })
-        .catch((error) => {
-            console.log(`Error getting data`, error);
-        });
+      this.dataLoader(this.state.page);
     }
 
     render () {
@@ -51,7 +60,10 @@ class App extends React.Component {
             <div>
                 <h1>Behold Events in History!</h1>
                 <div id="EventList">
-                    <HistoryList historyData={this.state.data}/>
+                  <HistoryList historyData={this.state.data}/>
+                </div>
+                <div id="react-paginate">
+                  <PaginationNav handlePageClick={this.handlePageClick.bind(this)}/>
                 </div>
             </div>
         )
