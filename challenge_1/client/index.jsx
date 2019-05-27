@@ -11,6 +11,7 @@ class App extends React.Component {
         super(props);
         this.state = {
           page: 1,
+          pageCount: 1,
           data: [  
               {
               "date": "",
@@ -20,18 +21,21 @@ class App extends React.Component {
               "category2": "",
               "granularity": ""
               }
-          ]
+          ],
+          searchTerm: "rome"
         }
         this.dataLoader = this.dataLoader.bind(this);
     }
 
-    dataLoader (page) {
-      axios.get(`http://localhost:3000/events?_page=${page}`)
+    dataLoader (page, searchTerm) {
+      axios.get(`http://localhost:3000/events?_page=${page}&q=${searchTerm}`)
       .then((response) =>{
-        const count = response.headers['x-total-count'];
+        const count = Number(response.headers['x-total-count']);
+        const pageCount = Math.ceil(count / 10);
         console.log(`this is the count:`, count);
           this.setState({
-              data: response.data
+              data: response.data,
+              pageCount: pageCount
           });
       })
       .catch((error) => {
@@ -47,23 +51,50 @@ class App extends React.Component {
         page: page
       });
 
-      this.dataLoader(page)
+      this.dataLoader(page, this.state.searchTerm);
       
+      console.log(`this is the new state after clicking:`, this.state);
+    }
+
+    // onChange (event) {
+    //   let searchTerm = document.getElementById('keyword').value;
+    //   this.setState({
+    //     searchTerm: searchTerm
+    //   })
+    //   console.log(`this is the search term:`, searchTerm);
+    // }
+
+    onSubmit (event) {
+      let searchTerm = document.getElementById('keyword').value;
+      this.setState({
+        searchTerm: searchTerm
+      });
+
+      this.dataLoader(1, searchTerm);
+      console.log(`this is the search term:`, searchTerm);
     }
 
     componentDidMount () {
-      this.dataLoader(this.state.page);
+      this.dataLoader(this.state.page, this.state.searchTerm);
+      console.log(`this is the state after mounting:`, this.state);
     }
 
     render () {
         return (
             <div>
                 <h1>Behold Events in History!</h1>
+                <div className="searchBar">
+                  <input type="text" id="keyword" placeholder="search ..."></input>
+                  <button onClick={this.onSubmit.bind(this)}>Submit</button>
+                </div>
                 <div id="EventList">
                   <HistoryList historyData={this.state.data}/>
                 </div>
                 <div id="react-paginate">
-                  <PaginationNav handlePageClick={this.handlePageClick.bind(this)}/>
+                  <PaginationNav 
+                  handlePageClick={this.handlePageClick.bind(this)}
+                  pageCount={this.state.pageCount}
+                  />
                 </div>
             </div>
         )

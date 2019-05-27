@@ -4,7 +4,6 @@ class Historylist extends React.Component {
 
     render () {
         console.log(`this is the props:`, this.props.historyData)
-        console.log(typeof(this.props.historyData));
 
         const events = this.props.historyData;
         

@@ -10,7 +10,7 @@ class PaginationNav extends React.Component {
                         nextLabel={'next'}
                         breakLabel={'...'}
                         breakClassName={'break-me'}
-                        pageCount={3786}
+                        pageCount={this.props.pageCount}
                         marginPagesDisplayed={2}
                         pageRangeDisplayed={5}
                         onPageChange={this.props.handlePageClick}

@@ -31,3 +31,10 @@ ul {
 #EventList {
     display: block;
 }
+
+.searchBar {
+    display: block;
+    margin: 0 0 0 35px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
