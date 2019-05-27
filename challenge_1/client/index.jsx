@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 import axios from 'axios';
 import HistoryList from './historylist.jsx';
 import PaginationNav from './pagination.jsx';
-// import ReactPaginate from 'react-paginate';
 import './styles/styles.css';
 
 class App extends React.Component {
@@ -22,7 +21,7 @@ class App extends React.Component {
               "granularity": ""
               }
           ],
-          searchTerm: "rome"
+          searchTerm: ""
         }
         this.dataLoader = this.dataLoader.bind(this);
     }
@@ -32,11 +31,11 @@ class App extends React.Component {
       .then((response) =>{
         const count = Number(response.headers['x-total-count']);
         const pageCount = Math.ceil(count / 10);
-        console.log(`this is the count:`, count);
-          this.setState({
-              data: response.data,
-              pageCount: pageCount
-          });
+
+        this.setState({
+            data: response.data,
+            pageCount: pageCount
+        });
       })
       .catch((error) => {
           console.log(`Error getting data`, error);
@@ -45,24 +44,12 @@ class App extends React.Component {
 
     handlePageClick = (event) => {
       let page = Number(event.selected) + 1;
-      console.log(`this is the page targeted:`, event.selected);
-
       this.setState({
         page: page
       });
 
-      this.dataLoader(page, this.state.searchTerm);
-      
-      console.log(`this is the new state after clicking:`, this.state);
+      this.dataLoader(page, this.state.searchTerm);      
     }
-
-    // onChange (event) {
-    //   let searchTerm = document.getElementById('keyword').value;
-    //   this.setState({
-    //     searchTerm: searchTerm
-    //   })
-    //   console.log(`this is the search term:`, searchTerm);
-    // }
 
     onSubmit (event) {
       let searchTerm = document.getElementById('keyword').value;
@@ -71,12 +58,10 @@ class App extends React.Component {
       });
 
       this.dataLoader(1, searchTerm);
-      console.log(`this is the search term:`, searchTerm);
     }
 
     componentDidMount () {
       this.dataLoader(this.state.page, this.state.searchTerm);
-      console.log(`this is the state after mounting:`, this.state);
     }
 
     render () {
@@ -99,7 +84,6 @@ class App extends React.Component {
             </div>
         )
     }
-
 }
 
 ReactDOM.render(<App />, document.getElementById('app'));
