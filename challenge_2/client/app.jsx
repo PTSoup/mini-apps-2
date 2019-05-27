@@ -6,8 +6,23 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      data: []
+      data: {}
     }
+  }
+
+  componentDidMount() {
+    axios.get('/data')
+      .then((response) => {
+        console.log(response.data);
+        this.setState({
+          data: response.data
+        })
+      })
+      .catch((err) => { 
+        console.log(`Error fetching API data`, err)
+      });
+
+      console.log(`this is the current state:`, this.state);
   }
 
   render () {
