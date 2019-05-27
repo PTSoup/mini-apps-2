@@ -56,6 +56,24 @@ class App extends React.Component {
       console.log(`this is the new state after clicking:`, this.state);
     }
 
+    // onChange (event) {
+    //   let searchTerm = document.getElementById('keyword').value;
+    //   this.setState({
+    //     searchTerm: searchTerm
+    //   })
+    //   console.log(`this is the search term:`, searchTerm);
+    // }
+
+    onSubmit (event) {
+      let searchTerm = document.getElementById('keyword').value;
+      this.setState({
+        searchTerm: searchTerm
+      });
+
+      this.dataLoader(1, searchTerm);
+      console.log(`this is the search term:`, searchTerm);
+    }
+
     componentDidMount () {
       this.dataLoader(this.state.page, this.state.searchTerm);
       console.log(`this is the state after mounting:`, this.state);
@@ -65,6 +83,10 @@ class App extends React.Component {
         return (
             <div>
                 <h1>Behold Events in History!</h1>
+                <div className="searchBar">
+                  <input type="text" id="keyword" placeholder="search ..."></input>
+                  <button onClick={this.onSubmit.bind(this)}>Submit</button>
+                </div>
                 <div id="EventList">
                   <HistoryList historyData={this.state.data}/>
                 </div>
