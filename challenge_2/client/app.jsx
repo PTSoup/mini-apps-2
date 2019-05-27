@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
 import Chart from './components/chart.jsx';
+import "./styles/styles.css";
 
 class App extends React.Component {
   constructor(props) {
@@ -22,6 +23,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
+    //Tells the server to run a GET request to the CoinDesk API, after load
     axios.get('/data')
       .then((response) => {
         console.log(response.data);
@@ -54,12 +56,19 @@ class App extends React.Component {
   render () {
     return (
       <div>
-        <h1>Bitcoin Charting</h1>
-        <p>The data range for this chart is 09/01/2017 to 05-01-2018</p>
-        <Chart chartData={this.state.data}/>
+        <div >
+          <div className="header nav">
+            <h1>Bitcoin Charting</h1>
+          </div>
+
+          <p>The data range for this chart is 09/01/2017 to 05/01/2018</p>
+          <Chart chartData={this.state.data} />
+
+        </div>
+
         <div>
-          <p>Powered by</p>
-          <a href="https://www.coindesk.com/price/bitcoin">CoinDesk</a>
+          <p className="shoutout">Powered by </p>
+          <a className="shoutout" href="https://www.coindesk.com/price/bitcoin">CoinDesk</a>
         </div>
       </div>
     )

@@ -2,15 +2,8 @@ import React from 'react';
 import { Line } from 'react-chartjs-2';
 
 class Chart extends React.Component {
-    // constructor(props) {
-    //     super(props);
-    //     this.state = {
-    //         data: props.chartData
-    //     }
-    // }
-
     render() {
-        // console.log(chartData);
+        //These options are needed to populate the chart
         const options = {
             maintainAspectRatio: false,
             scales: {

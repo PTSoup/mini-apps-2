@@ -1,3 +1,4 @@
+//This function parses the data received from the CoinDesk API call into a format suitable for the App.
 const parser = (data) => {
     let output = {labels:[], data:[]};
     let parsedLabels = Object.keys(data.bpi);
@@ -7,7 +8,6 @@ const parser = (data) => {
     output.data = parsedDataset;
 
     return output;
-
 }
 
 module.exports = {
