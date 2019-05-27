@@ -36,7 +36,15 @@ class App extends React.Component {
     //     console.log(`Error fetching API data`, err)
     //   });
 
-    //   console.log(`this is the current state:`, this.state);
+    axios.get('/data')
+      .then((response) => {
+        console.log(response.data);
+      })
+      .catch((err) => { 
+        console.log(`Error fetching API data`, err)
+      });
+
+      console.log(`this is the current state:`, this.state);
   }
 
   render () {
