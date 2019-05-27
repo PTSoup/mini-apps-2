@@ -17,21 +17,11 @@ class App extends React.Component {
             borderWidth: 1
         }]
       },
+      disclaimer: ''
     }
   }
 
   componentDidMount() {
-    // axios.get('/data')
-    //   .then((response) => {
-    //     console.log(response.data);
-    //     this.setState({
-    //       data: response.data
-    //     })
-    //   })
-    //   .catch((err) => { 
-    //     console.log(`Error fetching API data`, err)
-    //   });
-
     axios.get('/data')
       .then((response) => {
         console.log(response.data);
@@ -63,8 +53,14 @@ class App extends React.Component {
 
   render () {
     return (
-      <div>Hello this is working yes?
+      <div>
+        <h1>Bitcoin Charting</h1>
+        <p>The data range for this chart is 09/01/2017 to 05-01-2018</p>
         <Chart chartData={this.state.data}/>
+        <div>
+          <p>Powered by</p>
+          <a href="https://www.coindesk.com/price/bitcoin">CoinDesk</a>
+        </div>
       </div>
     )
   }
