@@ -12,12 +12,17 @@ class App extends React.Component {
 
   componentDidMount() {
     axios.get('/data')
-      .then((data) => {
-        console.log(data);
+      .then((response) => {
+        console.log(response.data);
+        this.setState({
+          data: response.data
+        })
       })
       .catch((err) => { 
         console.log(`Error fetching API data`, err)
       });
+
+      console.log(`this is the current state:`, this.state);
   }
 
   render () {

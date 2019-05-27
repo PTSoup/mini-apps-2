@@ -10,9 +10,11 @@ app.use(bodyparser.json());
 
 app.use(express.static(__dirname + '/public'));
 
-app.get('/data', (req, res) => {
+app.get('/data', (req, res, next) => {
     console.log(`Testing`);
-    res.send({'data': 1});
+    axios.get(`https://api.coindesk.com/v1/bpi/historical/close.json?start=2017-09-01&end=2017-09-30`)
+    .then((response) => res.send(response.data))
+    .catch((err) => {console.log(`Error calling API:`, err)});
 });
 
 app.listen(port, () => console.log(`Server is listening on port ${port}`));
