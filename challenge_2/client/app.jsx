@@ -26,7 +26,6 @@ class App extends React.Component {
     //Tells the server to run a GET request to the CoinDesk API, after load
     axios.get('/data')
       .then((response) => {
-        console.log(response.data);
         let newLabels = response.data.labels;
         let newData =response.data.data;
         this.setState({
@@ -49,8 +48,6 @@ class App extends React.Component {
       .catch((err) => { 
         console.log(`Error fetching API data`, err)
       });
-
-      console.log(`this is the current state:`, this.state);
   }
 
   render () {
