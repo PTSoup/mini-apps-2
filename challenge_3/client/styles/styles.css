@@ -26,3 +26,66 @@ body {
     text-align: center;
     text-decoration: none;
 }
+
+.buttonRow {
+    padding: 20px 0 0 0;
+}
+
+#frame {
+    margin: 20px 0 0 0;
+    height: 120px;
+    width: 100px;
+    border: 1px solid black;
+    display: inline-block;
+}
+
+.frameName {
+    margin: 0px;
+    height: 20px;
+    width: 100px;
+    background: #AC6C72;
+    border-bottom: 1px solid black;
+    text-align: center;
+    color: white;
+}
+
+.scoring {
+    margin: 0px;
+    height: 50px;
+    width: 100px;
+    display: inline-block;
+}
+
+.roll1 {
+    margin: 0px;
+    height: 50px;
+    width: 50px;
+    display: block;
+    text-align: center;
+    line-height: 50px;
+    float: left;
+}
+
+.roll2 {
+    box-sizing: border-box;
+    margin: 0px;
+    height: 50px;
+    width: 50px;
+    display: block;
+    text-align: center;
+    border-left: 1px solid black;
+    border-bottom: 1px solid black;
+    line-height: 50px;
+    float: right;
+}
+
+.frameScore {
+    box-sizing: border-box;
+    margin: 0px;
+    height: 50px;
+    width: 100px;
+    display: block;
+    text-align: center;
+    line-height: 50px;
+    float: left;
+}

@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import PinButtons from './components/pinbuttons.jsx';
+import Scoreboard from './components/scoreboard.jsx';
 import './styles/styles.css';
 
 class App extends React.Component {
@@ -17,7 +18,13 @@ class App extends React.Component {
                 <div className="header nav">
                     <h1>The Bowling Scorer</h1>
                 </div>
-                <PinButtons />
+                <span>
+                    <PinButtons />
+                </span>
+                <div>
+                    <Scoreboard />
+                </div>
+                
             </div>
         )
     }
