@@ -1,0 +1,103 @@
+@import url("https://fonts.googleapis.com/css?family=Open+Sans");
+body {
+    font-family: 'Open Sans';
+}
+
+.header {
+    font-size: 1em;
+    margin-right: auto;
+    margin-left: 10px;
+    color: #f3f3f3;
+  }
+
+.nav {
+    background-color: #3333ff;
+    margin: 0px;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    color: #F3F3F3;
+}
+
+.btn {
+    margin: 1px;
+    padding: 15px;
+    border-radius: 10px;
+    text-align: center;
+    text-decoration: none;
+}
+
+.buttonRow {
+    padding: auto 0 0 0;
+}
+
+.frame {
+    margin: 20px 0 0 0;
+    height: 120px;
+    width: 100px;
+    border: 1px solid black;
+    display: inline-block;
+}
+
+.lastframe {
+    margin: 20px 0 0 0;
+    height: 120px;
+    width: 150px;
+    border: 1px solid black;
+    display: inline-block;
+}
+
+.frameName {
+    margin: 0px;
+    height: 20px;
+    width: auto;
+    background: #AC6C72;
+    border-bottom: 1px solid black;
+    text-align: center;
+    color: white;
+}
+
+.scoring {
+    margin: 0px;
+    height: 50px;
+    width: auto;
+    display: inline-block;
+}
+
+.roll1 {
+    margin: 0px;
+    height: 50px;
+    width: 50px;
+    display: block;
+    text-align: center;
+    line-height: 50px;
+    float: left;
+}
+
+.roll2 {
+    box-sizing: border-box;
+    margin: 0px;
+    height: 50px;
+    width: 50px;
+    display: block;
+    text-align: center;
+    border-left: 1px solid black;
+    border-bottom: 1px solid black;
+    line-height: 50px;
+    float: right;
+}
+
+.frameScore {
+    box-sizing: border-box;
+    margin: 0px;
+    height: 50px;
+    width: 100px;
+    display: block;
+    text-align: center;
+    line-height: 50px;
+    float: left;
+}
+
+.frameScore last {
+    width: 150px;
+}
