@@ -27,7 +27,7 @@
   },
   "homepage": "https://github.com/PTSoup/rpt11-mini-apps-2#readme",
   "dependencies": {
-    "axios": "^0.18.0",
+    "axios": "^0.21.1",
     "body-parser": "^1.19.0",
     "json-server": "^0.15.0",
     "react": "^16.8.6",
